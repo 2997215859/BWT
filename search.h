@@ -7,6 +7,6 @@
 
 #include <string>
 
-int search (std::string bw, std::string p);
+int search (std::string bw, std::string p, char end_str);
 
 #endif //BWT_SEARCH_H

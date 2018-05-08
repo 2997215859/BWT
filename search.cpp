@@ -5,12 +5,12 @@
 #include "search.h"
 #include "decompression.h"
 
-int search (std::string bw, std::string p) {
+int search (std::string bw, std::string p, char end_str) {
     std::map<char, int> totals; // 记录各个字符的总数
     std::vector<int> ranks; // 记录之前出现相同字符的个数
     calc_ranks(bw, totals, ranks);
 
-    std::map<char, std::pair<int, int>> range_index = get_first_col_index(totals);
+    std::map<char, std::pair<int, int>> range_index = get_first_col_index(totals, end_str);
     // p最后一个字符的起始和终止
     int start = range_index[p.back()].first;
     int end = range_index[p.back()].second;

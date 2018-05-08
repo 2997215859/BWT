@@ -29,10 +29,10 @@ inline void calc_ranks(const std::string &bw, std::map<char, int> &totals, std::
 
 /**
  * 记录各个字符在第一列的起始索引和终止索引（左闭右开）
- * @param totals 各个字符的总数(已按键排序)
+ * @param totals 各个字符的总数
  * @return
  */
-std::map<char, std::pair<int, int>> get_first_col_index(const std::map<char, int> &totals);
+std::map<char, std::pair<int, int>> get_first_col_index(const std::map<char, int> &totals, char end_str);
 
 #endif //BWT_DECOMPRESSION_H
 

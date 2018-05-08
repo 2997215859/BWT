@@ -11,13 +11,13 @@
 int main () {
 //    std::string origin("abaaba");
     std::string origin("Tomorrow and tomorrow and tomorrow and tomorrow");
-//    std::string origin("tomorrow");
+//    std::string origin("Tomorrow and tomorrow");
     std::string compression_res = compression(origin);
     printf("compression res = %s\n", compression_res.c_str());
 
     std::string decompression_res = decompression(compression_res, '$');
     printf("decompression res = %s\n", decompression_res.c_str());
 
-    int count = search(compression_res, "omorrow");
+    int count = search(compression_res, "and", '$');
     printf("search count = %d\n", count);
 }
