@@ -16,5 +16,11 @@
  */
 std::string compression(std::string origin, char end_str = '$');
 
+/**
+ * 计算origin的前缀数组
+ * @param origin 原字符串(不包含结束字符$)
+ * @return
+ */
+std::vector<std::string> calc_suffix_array(std::string origin);
 
 #endif //BWT_COMPRESSION_H

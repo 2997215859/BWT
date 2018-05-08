@@ -34,9 +34,9 @@ std::string compression(std::string origin, char end_str) {
      * baaba$      a
      *
      */
-    std::vector<std::string> suffixs;
-    for (int i=0;i<=origin.size();i++) suffixs.push_back(origin.substr(i));
-    std::sort(suffixs.begin(), suffixs.end());
+
+    std::vector<std::string> suffixs = calc_suffix_array(origin);
+
 
     std::string res;
     int len = origin.size();
@@ -50,3 +50,9 @@ std::string compression(std::string origin, char end_str) {
     return res;
 }
 
+std::vector<std::string> calc_suffix_array(std::string origin) {
+    std::vector<std::string> suffixs;
+    for (int i=0;i<=origin.size();i++) suffixs.push_back(origin.substr(i));
+    std::sort(suffixs.begin(), suffixs.end());
+    return suffixs;
+}

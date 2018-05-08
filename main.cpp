@@ -9,15 +9,18 @@
 #include "search.h"
 
 int main () {
+    const char end_str = '$';
+
 //    std::string origin("abaaba");
     std::string origin("Tomorrow and tomorrow and tomorrow and tomorrow");
 //    std::string origin("Tomorrow and tomorrow");
+
     std::string compression_res = compression(origin);
     printf("compression res = %s\n", compression_res.c_str());
 
-    std::string decompression_res = decompression(compression_res, '$');
+    std::string decompression_res = decompression(compression_res, end_str);
     printf("decompression res = %s\n", decompression_res.c_str());
 
-    int count = search(compression_res, "and", '$');
-    printf("search count = %d\n", count);
+    std::vector<int> offsets = search(compression_res, "and", end_str);
+    printf("search count = %d\n", offsets.size());
 }

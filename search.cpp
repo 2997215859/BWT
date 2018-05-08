@@ -5,7 +5,8 @@
 #include "search.h"
 #include "decompression.h"
 
-int search (std::string bw, std::string p, char end_str) {
+
+std::vector<int> search (std::string bw, std::string p, char end_str) {
     std::map<char, int> totals; // 记录各个字符的总数
     std::vector<int> ranks; // 记录之前出现相同字符的个数
     calc_ranks(bw, totals, ranks);
@@ -15,6 +16,9 @@ int search (std::string bw, std::string p, char end_str) {
     int start = range_index[p.back()].first;
     int end = range_index[p.back()].second;
 
+    /**
+     * 回溯查询比对得到下一个字符的范围
+     */
     int i = p.size() - 2;
     while (i >= 0 && start < end) {
         char c = p[i];
@@ -27,7 +31,7 @@ int search (std::string bw, std::string p, char end_str) {
             j++;
         }
 
-        if (j == end) {
+        if (j == end) { // 一个都没有查到
             start = end;
             break;
         }
@@ -38,6 +42,19 @@ int search (std::string bw, std::string p, char end_str) {
         }
         end = range_index[c].first + ranks[end] + 1;
         i--;
+    } // 返回第一列中p的第一个字符的索引范围 [start, end)
+
+    // 计算offset
+    std::vector<int> offsets;
+    for (int i=start;i<end;i++) {
+        int offset = 0;
+        int row = i;
+        while (bw[row] != end_str) {
+            offset++;
+            row = range_index[bw[row]].first + ranks[row];
+        }
+        offsets.push_back(offset);
     }
-    return end - start;
+
+    return offsets;
 }
