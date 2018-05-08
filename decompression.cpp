@@ -30,15 +30,15 @@ std::string decompression (std::string bw, char end_str) {
     std::vector<int> ranks; // 记录之前出现相同字符的个数
     calc_ranks(bw, totals, ranks);
 
-    // 记录各个字符在第一列的起始索引
-    std::map<char, std::pair<int, int>> start_index = get_first_col_index(totals);
+    // 记录各个字符在第一列的起始索引和终止索引
+    std::map<char, std::pair<int, int>> range_index = get_first_col_index(totals);
 
     // 回溯
     int row = 0;
-    std::string res({end_str});
+    std::string res("$");
     while (bw[row] != end_str) {
         res = bw[row] + res;
-        row = start_index[bw[row]].first + ranks[row];
+        row = range_index[bw[row]].first + ranks[row];
     }
     return res;
 }

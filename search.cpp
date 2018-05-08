@@ -10,10 +10,10 @@ int search (std::string bw, std::string p) {
     std::vector<int> ranks; // 记录之前出现相同字符的个数
     calc_ranks(bw, totals, ranks);
 
-    std::map<char, std::pair<int, int>> first_col_index = get_first_col_index(totals);
+    std::map<char, std::pair<int, int>> range_index = get_first_col_index(totals);
     // p最后一个字符的起始和终止
-    int start = first_col_index[p.back()].first;
-    int end = first_col_index[p.back()].second;
+    int start = range_index[p.back()].first;
+    int end = range_index[p.back()].second;
 
     int i = p.size() - 2;
     while (i >= 0 && start < end) {
@@ -21,7 +21,7 @@ int search (std::string bw, std::string p) {
         int j = start;
         while (j < end) {
             if (bw[j] == c) {
-                start = first_col_index[c].first + ranks[j];
+                start = range_index[c].first + ranks[j];
                 break;
             }
             j++;
@@ -36,7 +36,7 @@ int search (std::string bw, std::string p) {
         while (bw[end] != c) {
             end--;
         }
-        end = first_col_index[c].first + ranks[end] + 1;
+        end = range_index[c].first + ranks[end] + 1;
         i--;
     }
     return end - start;

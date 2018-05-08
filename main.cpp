@@ -9,14 +9,15 @@
 #include "search.h"
 
 int main () {
-    std::string origin("abaaba");
-
+//    std::string origin("abaaba");
+    std::string origin("Tomorrow and tomorrow and tomorrow and tomorrow");
+//    std::string origin("tomorrow");
     std::string compression_res = compression(origin);
     printf("compression res = %s\n", compression_res.c_str());
 
     std::string decompression_res = decompression(compression_res, '$');
     printf("decompression res = %s\n", decompression_res.c_str());
 
-    int count = search(compression_res, "aba");
+    int count = search(compression_res, "omorrow");
     printf("search count = %d\n", count);
 }

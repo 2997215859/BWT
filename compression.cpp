@@ -39,12 +39,13 @@ std::string compression(std::string origin, char end_str) {
     std::sort(suffixs.begin(), suffixs.end());
 
     std::string res;
+    int len = origin.size();
     for (const std::string &suffix: suffixs) {
         if (suffix.size() == origin.size()) { // 此时, 末尾字符应该为$
             res.push_back(end_str);
             continue;
         }
-        res.push_back(origin[suffix.size()]);
+        res.push_back(origin[len - suffix.size() - 1]);
     }
     return res;
 }
