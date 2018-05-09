@@ -12,7 +12,7 @@ int main () {
     const char end_str = '$';
 
 //    std::string origin("abaaba");
-    std::string origin("cpp primer and effective cpp and modern effective cpp and effective stl");
+    std::string origin("stl cpp primer and effective cpp and modern effective cpp and effective stl");
 
     std::string compression_res = compression(origin);
     printf("compression res = %s\n", compression_res.c_str());

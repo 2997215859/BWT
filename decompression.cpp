@@ -15,7 +15,7 @@ std::map<char, std::pair<int, int>> get_first_col_index(const std::map<char, int
         } else if (o2.first == end_str) {
             return false;
         }
-        return o1.first < o2.second;
+        return o1.first < o2.first;
     });
     int cnt = 0;
     for (auto &t: sort_totals) {
