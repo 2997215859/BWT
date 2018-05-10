@@ -26,6 +26,7 @@ std::map<char, std::pair<int, int>> get_first_col_index(const std::map<char, int
 }
 
 std::string decompression (std::string bw, char end_str) {
+
     /**
      * F L rank
      * $ a 0

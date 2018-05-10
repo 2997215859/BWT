@@ -47,6 +47,7 @@ std::string compression(std::string origin, char end_str) {
         }
         res.push_back(origin[len - suffix.size() - 1]);
     }
+
     return res;
 }
 
