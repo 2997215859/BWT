@@ -7,10 +7,28 @@
 #include "io.h"
 #include <iostream>
 
-char get_end_str(const char* relative_file_path) {
+std::string get_compression_res(const std::string relative_file_path) {
+    char file_path[PATH_MAX];
+    realpath(relative_file_path.c_str(), file_path);
+    std::ifstream read_handle(file_path);
+    if (!read_handle.is_open()) {
+        fprintf(stderr, "无法打开文件%s", file_path);
+        exit(1);
+    }
+
+    read_handle.seekg(sizeof(int), std::ios::beg);
+    std::string compression_res;
+    while (!read_handle.eof()) {
+        std::string line;
+        getline(read_handle, line);
+        compression_res += line;
+    }
+    return compression_res;
+}
+char get_end_str(const std::string relative_file_path) {
 // 读入源文件
     char file_path[PATH_MAX];
-    realpath(relative_file_path, file_path);
+    realpath(relative_file_path.c_str(), file_path);
     std::ifstream read_handle(file_path);
     if (!read_handle.is_open()) {
         fprintf(stderr, "无法打开文件%s", file_path);
@@ -26,10 +44,10 @@ char get_end_str(const char* relative_file_path) {
     return end_str;
 }
 
-std::string get_origin (const char* relative_file_path) {
+std::string get_origin (std::string relative_file_path) {
 // 读入源文件
     char file_path[PATH_MAX];
-    realpath(relative_file_path, file_path);
+    realpath(relative_file_path.c_str(), file_path);
     std::ifstream read_handle(file_path);
     if (!read_handle.is_open()) {
         fprintf(stderr, "无法打开文件%s", file_path);
@@ -43,12 +61,12 @@ std::string get_origin (const char* relative_file_path) {
     return origin;
 }
 
-int write_compression_res(std::string compression_res, const char* relative_file_path, char end_str) {
+int write_compression_res(std::string compression_res, std::string relative_file_path, char end_str) {
 
     int end_char_index = compression_res.find({end_str});
 
     char file_path[PATH_MAX];
-    realpath(relative_file_path, file_path);
+    realpath(relative_file_path.c_str(), file_path);
     std::ofstream write_handle(file_path);
     if (!write_handle.is_open()) {
         fprintf(stderr, "无法打开文件%s", file_path);
@@ -61,10 +79,10 @@ int write_compression_res(std::string compression_res, const char* relative_file
     write_handle.close();
 }
 
-int write_decompression_res(std::string decompression_res, const char* relative_file_path) {
+int write_string(std::string decompression_res, std::string relative_file_path) {
 
     char file_path[PATH_MAX];
-    realpath(relative_file_path, file_path);
+    realpath(relative_file_path.c_str(), file_path);
     std::ofstream write_handle(file_path);
     if (!write_handle.is_open()) {
         fprintf(stderr, "无法打开文件%s", file_path);
