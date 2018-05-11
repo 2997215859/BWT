@@ -16,6 +16,8 @@ endif()
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -std=c++11")
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -std=c++11")
 
-add_executable(bwt main.cpp compression.cpp compression.h decompression.cpp decompression.cpp decompression.h search.cpp search.h io.cpp io.h generate_file.cpp generate_file.h test.cpp test.h)
+AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR}/src/. SRC_FILES)
+
+add_executable(bwt ${SRC_FILES})
 
 
