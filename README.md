@@ -11,8 +11,8 @@ compression, decompression and search for algorithom Burrows-Wheeler Transform(B
 ├── CMakeLists.txt
 ├── data                              # 存放各种文本数据
 │   ├── analysis
-│   │   ├── case_compression_time     # 各个文件编码所需时间
-│   │   └── case_decompression_time   # 各个文件解码所需时间
+│   │   ├── case_compression_time     # 各个文件编码所需时间, 时间单位为微秒
+│   │   └── case_decompression_time   # 各个文件解码所需时间, 时间单位为微秒
 │   ├── compression                   # 存放压缩结果, case12就表示该文件中字符串长度为12
 │   │   ├── case12
 │   │   ├── case15
@@ -46,8 +46,8 @@ compression, decompression and search for algorithom Burrows-Wheeler Transform(B
 3. 时间复杂度，相关数据写在case_compression_time和case_decompression_time文件中，格式为两行
 
    * 第一行, 三个整数, 比如 3, 18, 3, 则表示所测试的各个文本长度是从3开始, 步长为3, 一直到18(不包括)结束 
-   * 第二行，各个文本对应所用时间
-   
+   * 第二行，各个文本对应所用时间, 时间单位为微秒
+   
 4. 测试文本是利用generate_file.cpp生成, **如果想要生成不同间距, 起始位置的文本**, 只需要在`main.cpp`中更改传入的实参range即可
 
 ## 环境
