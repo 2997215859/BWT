@@ -7,6 +7,6 @@
 
 #include <string>
 
-void generate(int cnt, std::string relative_file_basename);
+void generate(std::vector<int> range, std::string relative_file_basename);
 
 #endif //BWT_GENERATE_FILE_H

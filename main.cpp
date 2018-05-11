@@ -12,36 +12,27 @@
 #include "search.h"
 #include "io.h"
 #include "generate_file.h"
+#include "test.h"
 
 /**
  *
  * @param args
- * @param argv 源文件路径 编码结果路径 解码结果路径 查询字符 查询结果路径
+ * @param argv
  * @return
  */
+
 int main (int args, char *argv[]) {
-
-    int file_num = 2;
     std::string relative_origin_basename = "../data/origin/case";
-    generate(2, relative_origin_basename);
-
     std::string relative_compression_res_basename = "../data/compression/case";
-    std::string relative_decompression_res_basename = "../data/decompression/case";
+    std::string relative_decompressio_res_basename = "../data/decompression/case";
 
-    const char end_str = '$';
-    for (int i=0;i<file_num;i++) {
-        std::string origin = get_origin(relative_origin_basename + std::to_string(i));
-        std::string compression_res = compression(origin);
-        write_compression_res(compression_res, relative_compression_res_basename + std::to_string(i), end_str);
-    }
+    std::string compression_filename_analysis = "../data/analysis/case_compression_time";
+    std::string decompression_filename_analysis = "../data/analysis/case_decompression_time";
 
-    for (int i=0;i<file_num;i++) {
-        char t = get_end_str(relative_compression_res_basename + std::to_string(i));
-        std::string compression_res = get_compression_res(relative_compression_res_basename + std::to_string(i));
-        std::string decompression_res = decompression(compression_res, end_str);
-        write_string(decompression_res, relative_decompression_res_basename + std::to_string(i));
-    }
-    
+    std::vector<int> range = {3, 300, 3}; // 左闭右开, 左3, 右300, 步距为3
+    test_compression(relative_origin_basename, relative_compression_res_basename, range, compression_filename_analysis);
+    test_decompression(relative_compression_res_basename, relative_decompressio_res_basename, range, decompression_filename_analysis);
+
 //    std::vector<int> offsets = search(compression_res, "and", end_str);
 //    printf("search count = %d\n", offsets.size());
 }

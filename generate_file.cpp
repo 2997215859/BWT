@@ -7,14 +7,24 @@
  * @return
  */
 
+#include <vector>
 #include "generate_file.h"
 #include "io.h"
 
-void generate(int cnt, std::string relative_file_basename) {
+void generate(std::vector<int> range, std::string relative_file_basename) {
      // 文件中字符个数从1到cnt
-     for (int i=0;i<cnt;i++) {
+     if (range.size() != 3) {
+         fprintf(stderr, "range参数应当为3");
+         exit(1);
+     }
+
+     int start = range[0];
+     int end = range[1];
+     int step = range[2];
+
+     for (int i=start;i<end;i+=step) {
          std::string origin("");
-         for (int j=0;j<=i;j++) {
+         for (int j=1;j<=i;j++) {
              int rnd = rand() % 26;
              char rand_char = 'a' + rnd;
              origin += rand_char;

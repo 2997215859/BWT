@@ -39,3 +39,6 @@ bin
 
 # ide
 .idea
+
+# data
+case*
