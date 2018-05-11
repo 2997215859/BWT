@@ -11,6 +11,13 @@
 #include <ctime>
 #include <sys/time.h>
 
+/**
+ *
+ * @param relative_origin_basename 源文件名称
+ * @param relative_compression_res_basename 编码结果文件
+ * @param range 要生成的文件长度, 比如[3, 18, 3], 从3开始到18结束, 按步距3依次生成3, 6, 9, 12, 15长度的文件
+ * @param compression_filename_analysis 存放各个文件压缩所需要的时间
+ */
 void test_compression(std::string relative_origin_basename, std::string relative_compression_res_basename, std::vector<int> range, std::string compression_filename_analysis) {
     generate(range, relative_origin_basename); // 生成若干源文件
     const char end_str = '$'; // 结束字符
@@ -37,6 +44,13 @@ void test_compression(std::string relative_origin_basename, std::string relative
     write_string(time_cost, compression_filename_analysis);
 }
 
+/**
+ *
+ * @param relative_compression_res_basename  编码结果文件
+ * @param relative_decompression_res_basename 解码结果文件
+ * @param range 要生成的文件长度, 比如[3, 18, 3], 从3开始到18结束, 按步距3依次生成3, 6, 9, 12, 15长度的文件
+ * @param decompression_filename_analysis 存放各个文件解压所需要的时间
+ */
 void test_decompression(std::string relative_compression_res_basename, std::string relative_decompression_res_basename, std::vector<int> range, std::string decompression_filename_analysis) {
     std::string time_cost = std::to_string(range[0]) + " " +
                             std::to_string(range[1]) + " " +

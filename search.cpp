@@ -5,7 +5,13 @@
 #include "search.h"
 #include "decompression.h"
 
-
+/**
+ * 在编码结果中寻找匹配p的字符串
+ * @param bw
+ * @param p
+ * @param end_str
+ * @return 匹配字符串的偏置
+ */
 std::vector<int> search (std::string bw, std::string p, char end_str) {
     std::map<char, int> totals; // 记录各个字符的总数
     std::vector<int> ranks; // 记录之前出现相同字符的个数

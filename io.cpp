@@ -7,6 +7,12 @@
 #include "io.h"
 #include <iostream>
 
+
+/**
+ * 从编码结果文件中取出压缩结果
+ * @param relative_file_path
+ * @return
+ */
 std::string get_compression_res(const std::string relative_file_path) {
     char file_path[PATH_MAX];
     realpath(relative_file_path.c_str(), file_path);
@@ -25,6 +31,12 @@ std::string get_compression_res(const std::string relative_file_path) {
     }
     return compression_res;
 }
+
+/**
+ * 从编码结果文件中取出结束字符
+ * @param relative_file_path
+ * @return
+ */
 char get_end_str(const std::string relative_file_path) {
 // 读入源文件
     char file_path[PATH_MAX];
@@ -44,6 +56,11 @@ char get_end_str(const std::string relative_file_path) {
     return end_str;
 }
 
+/**
+ * 从源文件中取出源字符串
+ * @param relative_file_path
+ * @return
+ */
 std::string get_origin (std::string relative_file_path) {
 // 读入源文件
     char file_path[PATH_MAX];
@@ -61,6 +78,13 @@ std::string get_origin (std::string relative_file_path) {
     return origin;
 }
 
+/**
+ * 将压缩结果写入文件
+ * @param compression_res 压缩结果
+ * @param relative_file_path 文件的相对路径
+ * @param end_str 结束字符
+ * @return
+ */
 int write_compression_res(std::string compression_res, std::string relative_file_path, char end_str) {
 
     int end_char_index = compression_res.find({end_str});
@@ -79,7 +103,13 @@ int write_compression_res(std::string compression_res, std::string relative_file
     write_handle.close();
 }
 
-int write_string(std::string decompression_res, std::string relative_file_path) {
+/**
+ * 将字符串str写入文件
+ * @param str
+ * @param relative_file_path
+ * @return
+ */
+int write_string(std::string str, std::string relative_file_path) {
 
     char file_path[PATH_MAX];
     realpath(relative_file_path.c_str(), file_path);
@@ -89,6 +119,6 @@ int write_string(std::string decompression_res, std::string relative_file_path) 
         exit(1);
     }
 
-    write_handle << decompression_res;
+    write_handle << str;
     write_handle.close();
 }

@@ -11,6 +11,11 @@
 #include "generate_file.h"
 #include "io.h"
 
+/**
+ * 根据range生成所需要的源文件
+ * @param range 要生成的文件长度, 比如[3, 18, 3], 从3开始到18结束, 按步距3依次生成3, 6, 9, 12, 15长度的文件
+ * @param relative_file_basename
+ */
 void generate(std::vector<int> range, std::string relative_file_basename) {
      // 文件中字符个数从1到cnt
      if (range.size() != 3) {

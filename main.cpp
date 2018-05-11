@@ -29,10 +29,11 @@ int main (int args, char *argv[]) {
     std::string compression_filename_analysis = "../data/analysis/case_compression_time";
     std::string decompression_filename_analysis = "../data/analysis/case_decompression_time";
 
-    std::vector<int> range = {3, 300, 3}; // 左闭右开, 左3, 右300, 步距为3
+    std::vector<int> range = {3, 21, 3}; // 左闭右开, 左3, 右300, 步距为3
     test_compression(relative_origin_basename, relative_compression_res_basename, range, compression_filename_analysis);
     test_decompression(relative_compression_res_basename, relative_decompressio_res_basename, range, decompression_filename_analysis);
 
 //    std::vector<int> offsets = search(compression_res, "and", end_str);
 //    printf("search count = %d\n", offsets.size());
+
 }
