@@ -68,6 +68,33 @@ BWT算法是个可逆的算法，即允许从最后一列字符和结束字符�
 
 ![img/search.png](img/search.png)
 
+## 时间复杂度
+
+为了测试编码和解码的时间开销，编写生成不同长度的文本，并记录时间开销。
+
+### 编码时间开销
+
+编码的时间开销主要是在矩阵的排序上，$T(n) = n^2 \log(n)$。对长度从1到200的不同文本做编码，然后汇出时间曲线，一共做十组，结果如下。
+
+![img/cost_compression.png](img/cost_compression.png)
+
+### 解码时间开销
+
+解码的时间开销主要是在获取第一列排序上，$T(n) = n\log(n)$。同编码一样，对长度从1到200的不同文本做解码，然后汇出时间曲线，一共做十组，结果如下。
+
+![img/cost_decompression.png](img/cost_decompression.png)
+
+### 平均
+
+由于误差，这里对十组数据取平均，分别绘制编码和解码的平均时间开销如下
+
+![img/cost_compression_and_de_avg.png](img/cost_compression_and_de_avg.png)
+
+这里趋势不是很明显，将文本长度跨度放到2000，绘制平均时间开销图如下
+![img/cost_compression_and_de_avg2.png](img/cost_compression_and_de_avg2.png)
+
+显然，由于编码时间复杂度更大，所以在n比较大的时候，开销时间超过了解码时间。
+
 ## 优缺点
 
 ### 优点
